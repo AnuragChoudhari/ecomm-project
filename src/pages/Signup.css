@@ -1,0 +1,12 @@
+#signup-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+form{
+    margin: 40px;
+}

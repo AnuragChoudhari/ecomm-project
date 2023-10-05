@@ -1,0 +1,18 @@
+#product-details{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#image-container {
+    overflow: hidden; /* Hide overflowing image parts */
+    width: 50%; /* Set the initial width */
+    height: auto; /* Set the initial height */
+  }
+  
+  #product-image {
+    width: 100%;
+    height: auto;
+    transform: scale(1); /* Initial scale */
+    transition: transform 0.2s ease; /* Smooth transition on scaling */
+  }
