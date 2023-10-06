@@ -1,18 +1,39 @@
 #product-details{
     display: flex;
     justify-content: center;
-    
+    align-items: center;
+}
+
+#product-view h1{
+  padding: 40px;
+}
+
+#product-view{
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  height: auto;
+  padding: 40px;
 }
 
 #image-container {
-    overflow: hidden; /* Hide overflowing image parts */
-    width: 50%; /* Set the initial width */
-    height: auto; /* Set the initial height */
+  height: 40vh;
+    object-fit: contain;
   }
   
   #product-image {
+    height: 100%;
     width: 100%;
-    height: auto;
-    transform: scale(1); /* Initial scale */
-    transition: transform 0.2s ease; /* Smooth transition on scaling */
+    object-fit: contain;
+    padding: 0px;
+    transition: .6s ease-in-out;
+  }
+
+  #product-image:hover{
+    transform: scale(1.5);
+  }
+
+  .card{
+    width: 50% ;
   }

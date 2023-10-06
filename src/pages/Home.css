@@ -1,3 +1,16 @@
 #home_container{
     height: 100vh;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#home_container h1{
+    font-size: 5vw;
+}
+
+#hero-img{
+    height: auto;
+    width: 100%;
 }

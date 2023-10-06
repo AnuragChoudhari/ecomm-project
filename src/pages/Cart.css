@@ -1,0 +1,29 @@
+#cart-page{
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+#cart-items{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#cart-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    object-fit: contain;
+}
+
+#final-list{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}

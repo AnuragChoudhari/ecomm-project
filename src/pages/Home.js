@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import hero from "./hero.jpg"
 
 import {getDatabase, ref, set, get} from "firebase/database"
 import {app} from "../firebase";
@@ -24,7 +25,7 @@ const Home = () => {
       <h1>Welcome to our ecommerce website</h1>
 
       <div className="container" id="hero-section">
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -32,7 +33,8 @@ const Home = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        </p> */}
+        <img src={hero} id="hero-img"></img>
       </div>
     </div>
   );

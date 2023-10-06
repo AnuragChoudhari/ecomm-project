@@ -1,11 +1,31 @@
 #products-page{
     height: auto;
-    width: 100%;
+    width: 100vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-self: center;
+    align-items: flex-start;
 }
+
+
+#product-filter-section{
+   
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin: 40px;
+}
+
+#filter{
+    width: 1vw;
+    display: flex;
+
+}
+
+
+
 #products-page h1{
     text-align: center;
     padding: 20px;
@@ -16,12 +36,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    height: auto;
+    width: 70vw;
 }
 
+.card #img-container{
+    height: 40vh;
+    object-fit: contain;
+}
 .card{
     width: 300px;
     height: auto;
     overflow: hidden;
+    object-fit: contain;
     margin: 20px;
 }
 
