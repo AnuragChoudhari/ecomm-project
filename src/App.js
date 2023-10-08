@@ -13,6 +13,7 @@ import ErrPage from "./pages/ErrPage";
 import { useFirebase } from "./context/Firebase";
 import { useState, useEffect } from "react";
 import  Cart  from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const [userDetails, setUserDetails] = useState();
@@ -53,10 +54,11 @@ else{
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/products" element={<Products></Products>}></Route>
           <Route path="/products/viewproduct/:id" element={<ProductView></ProductView>}></Route>
-          {userDetails ? <><Route path="/cart" element={<Cart></Cart>}></Route></>
+          {userDetails ? <><Route path="/cart" element={<Cart></Cart>}></Route> <Route path="/checkout" element={<Checkout></Checkout>}></Route></>
           :     <>  <Route path="/auth/sign-up" element={<Signup></Signup>}></Route>
           <Route path="/auth/login" element={<LoginUser></LoginUser>}></Route>  </>}
           <Route path="/contact" element={<Contact></Contact>}></Route>
+
         
           <Route path="*" element={<ErrPage></ErrPage>}></Route>
         </Routes>

@@ -64,6 +64,11 @@ const Cart = () => {
     getTotalSum();
   }, [cartData]);
 
+
+  function checkOutHandler(){
+    window.location.href = "/checkout";
+  }
+
   return (
     <div className="container" id="cart-page">
       <h1>Cart</h1>
@@ -115,6 +120,7 @@ const Cart = () => {
               ))}
       </div>
       <h1>Total amount - ${totalAmt.toFixed(2)}</h1>
+      <button className="btn btn-primary" onClick={checkOutHandler}>Proceed to checkout</button>
     </div>
     </div>
   );
