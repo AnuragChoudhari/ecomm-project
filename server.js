@@ -28,15 +28,22 @@
     user_email: String,
     products: [Number], // An array of product IDs as strings
   });
+  
 
-
+  const userAddress = new mongoose.Schema({
+    user_email: String,
+    address: Object,
+  
+  })
 
   const ProductModel = mongoose.model('Product', ProductSchema);
 
   // Create a model for the cart_info collection
   const Cart = mongoose.model('Cart', cartSchema);
 
-
+  // address
+  
+  const User_Address = mongoose.model('User_Address', userAddress);
 
 
 
@@ -129,6 +136,35 @@
       res.status(500).json({ error: "Internal Server Error" });
     }
   });
+
+
+  // Add address
+
+  app.post("/api/addressdetails", async (req,res)=>{
+      const userData = req.body;
+
+
+      
+
+        
+        const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
+        
+        if(checkAddressExists == null){
+          const addAddress = new User_Address({
+            user_email: userData.user_email,
+            address: userData, // Assuming product_details is an array of product IDs as strings
+          });
+          
+          await addAddress.save();
+          res.send(addAddress);
+        }
+        else{
+          res.send("Address already exists");
+        }
+     
+      
+      
+  })
 
   const port = process.env.PORT || 5000;
   app.listen(port, () => {
