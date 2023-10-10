@@ -4,6 +4,7 @@ import "./ProductView.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase";
 import { getDatabase, ref, set } from "firebase/database";
+import Swal from "sweetalert2";
 
 const ProductView = () => {
   const auth = getAuth(app);
@@ -58,7 +59,12 @@ const ProductView = () => {
       
       return true;
     } else {
-      alert("Please login first");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You need to login first :)',
+        footer: '<a href="/auth/login">Click here to login</a>'
+      })
       return false;
     }
   }
@@ -84,6 +90,13 @@ const ProductView = () => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Item added to cart!',
+            showConfirmButton: false,
+            timer: 1500
+          })
           return response.json();
         })
         .then((data) => {
@@ -140,8 +153,8 @@ const ProductView = () => {
               class="btn btn-primary btn-sm"
               onClick={cartHandler}
             >
-              {" "}
-              Add to cart{" "}
+              
+              Add to cart 
             </button>
           </div>
         </div>

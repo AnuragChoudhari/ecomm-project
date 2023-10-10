@@ -124,7 +124,7 @@
 
       if (getProducts == null) {
         // Handle the case where the user's cart is empty
-        res.json({ message: "Your cart is empty" });
+        res.json(null);
       } else {
         // Fetch products from the database based on product IDs in the cart
         const fetchProducts = await ProductModel.find({ id: { $in: getProducts.products } });
@@ -137,6 +137,20 @@
     }
   });
 
+  // Delete item from cart
+
+  app.post("/api/remove/", async (req,res)=>{
+    const deleteDetails = req.body;
+    const get_prod = await Cart.findOne({ user_email: deleteDetails.user_email });
+    if(get_prod != null){
+      const deleteItem = await Cart.updateOne({user_email: deleteDetails.user_email}, {$pull: {products: parseInt(deleteDetails.prod_id)}})
+      res.json({message: "Item removed from cart!"});
+    }
+    else{
+      res.send("Already empty!");
+    }
+  })
+
 
   // Add address
 
@@ -145,22 +159,40 @@
 
 
       
+      
+      const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
+        
+      if(checkAddressExists == null){
+        const addAddress = new User_Address({
+          user_email: userData.user_email,
+          address: userData, // Assuming product_details is an array of product IDs as strings
+        });
+        
+        await addAddress.save();
+        res.json(checkAddressExists);
+  
+      }
+      else{
+        res.json(checkAddressExists);
+      }
+
 
         
-        const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
+        // const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
         
-        if(checkAddressExists == null){
-          const addAddress = new User_Address({
-            user_email: userData.user_email,
-            address: userData, // Assuming product_details is an array of product IDs as strings
-          });
+        // if(checkAddressExists == null){
+        //   const addAddress = new User_Address({
+        //     user_email: userData.user_email,
+        //     address: userData, // Assuming product_details is an array of product IDs as strings
+        //   });
           
-          await addAddress.save();
-          res.send(addAddress);
-        }
-        else{
-          res.send("Address already exists");
-        }
+        //   await addAddress.save();
+        //   res.send(checkAddressExists);
+    
+        // }
+        // else{
+        //   res.json(checkAddressExists);
+        // }
      
       
       

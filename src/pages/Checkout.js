@@ -12,6 +12,10 @@ const Checkout = () => {
   const [zip_no, setZipNo] = useState("");
   const firebase = useFirebase();
 
+  const [res, setRes] = useState("");
+
+  const [userEmail, setUserEmail] = useState("")
+
   async function checkUserSignIn(){
     try{
       const user = await firebase.checkSignInDetails();
@@ -33,6 +37,32 @@ const Checkout = () => {
     checkUserSignIn();
   },[])
 
+  useEffect(()=>{
+    async function checkAddress(){
+      try{
+        const res = await fetch("http://localhost:5000/api/addressdetails",{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userDetails),
+        })
+        if(res.status == 200){
+          const f_data = await res.json();
+          setUserEmail(f_data);
+        }
+        else{
+          console.log("Something went wrong");
+        }
+      }catch(err){
+        console.log(err);
+      }
+     }
+     checkAddress();
+  },[])
+
+
+console.log(userEmail);
 
   async  function addAddressHandler(e){
     e.preventDefault();
@@ -55,20 +85,21 @@ const Checkout = () => {
       })
       if(response.status == 200){
         const fetched_data = await response.json();
-        console.log(fetched_data);
-        console.log("Data inserted successfully");
+        setRes(fetched_data);
+        console.log("Done");
+        window.location.href = "/api/place_order"
       }
       else{
         console.log("Something went wrong ");
       }
     }catch(err){
-      alert("Address Already Exists!");
+      console.log(err);
     }
+    
   
-   
-
-    // window.location.href = `http://localhost:5000/api/addressdetails/${userDetails.email}`
   }
+
+
 
   return (
     <div className="container" id="checkout-container">
