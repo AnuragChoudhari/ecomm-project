@@ -160,23 +160,23 @@
 
       
       
-      const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
+      // const checkAddressExists = await User_Address.findOne({user_email: userData.email});
         
-      if(checkAddressExists == null){
-        const addAddress = new User_Address({
-          user_email: userData.user_email,
-          address: userData, // Assuming product_details is an array of product IDs as strings
-        });
+      // if(checkAddressExists == null){
+      //   const addAddress = new User_Address({
+      //     user_email: userData.user_email,
+      //     address: userData, // Assuming product_details is an array of product IDs as strings
+      //   });
         
-        await addAddress.save();
-        res.json(checkAddressExists);
+      //   await addAddress.save();
+      //   res.json(checkAddressExists);
   
-      }
-      else{
-        res.json(checkAddressExists);
-      }
+      // }
+      // else{
+      //   res.json(checkAddressExists);
+      // }
 
-
+      res.json(userData);
         
         // const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
         
