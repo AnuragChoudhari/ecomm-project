@@ -7,7 +7,7 @@ import { useFirebase } from "../context/Firebase";
 const PlaceOrder = () => {
     const [userDetails, setUserDetails] = useState();
  const firebase = useFirebase();
-
+// Update
  useEffect(()=>{
     async function checkUserSignIn(){
         try{
