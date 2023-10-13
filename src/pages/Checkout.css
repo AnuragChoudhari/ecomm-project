@@ -5,3 +5,8 @@
 #checkout-title{
     margin-top: 20px;
 }
+
+#modal-msg{
+    display: flex;
+    justify-content: flex-start;
+}

@@ -79,7 +79,7 @@ const Cart = () => {
           if (data != null) {
             setCartData(data);
           } else {
-            setCartData(null);
+            setCartData([]);
           }
         }
       } catch (error) {

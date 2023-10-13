@@ -151,52 +151,52 @@
     }
   })
 
+  // Get address 
+
+  
+  app.post("/api/getAddress", async (req,res)=>{
+    const user_details = req.body;
+    
+    const checkAddressExists = await User_Address.findOne({user_email: user_details.email});
+    if(checkAddressExists == null){
+
+      res.json([]);
+
+    }
+    else{
+      res.json(checkAddressExists);
+    }
+
+  })
+
 
   // Add address
 
-  app.post("/api/addressdetails", async (req,res)=>{
-      const userData = req.body;
+ // Add address
+app.post("/api/addressdetails", async (req, res) => {
+  const userData = req.body;
+
+  try {
+    const checkAddressExists = await User_Address.findOne({ user_email: userData.user_email });
+
+    if (checkAddressExists == null) {
+      const addAddress = new User_Address({
+        user_email: userData.user_email,
+        address: userData.address,
+      });
+
+      const savedAddress = await addAddress.save();
+      res.json(savedAddress);
+    } else {
+      res.json(checkAddressExists);
+    }
+  } catch (error) {
+    console.error('Error adding address:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
-      
-      
-      // const checkAddressExists = await User_Address.findOne({user_email: userData.email});
-        
-      // if(checkAddressExists == null){
-      //   const addAddress = new User_Address({
-      //     user_email: userData.user_email,
-      //     address: userData, // Assuming product_details is an array of product IDs as strings
-      //   });
-        
-      //   await addAddress.save();
-      //   res.json(checkAddressExists);
-  
-      // }
-      // else{
-      //   res.json(checkAddressExists);
-      // }
-
-      res.json(userData);
-        
-        // const checkAddressExists = await User_Address.findOne({user_email: userData.user_email});
-        
-        // if(checkAddressExists == null){
-        //   const addAddress = new User_Address({
-        //     user_email: userData.user_email,
-        //     address: userData, // Assuming product_details is an array of product IDs as strings
-        //   });
-          
-        //   await addAddress.save();
-        //   res.send(checkAddressExists);
-    
-        // }
-        // else{
-        //   res.json(checkAddressExists);
-        // }
-     
-      
-      
-  })
 
   const port = process.env.PORT || 5000;
   app.listen(port, () => {
